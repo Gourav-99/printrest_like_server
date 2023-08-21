@@ -1,9 +1,6 @@
 #!/bin/bash
 
-#give permission for everything in the api directory
-sudo chmod -R 777 /home/ec2-user/printrest_like_server
-
-#navigate into our working directory where we have all our github files
+# Navigate into our working directory where we have all our github files
 cd /home/ec2-user/printrest_like_server
 
 export NVM_DIR="$HOME/.nvm"
