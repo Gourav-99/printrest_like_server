@@ -17,6 +17,13 @@ module.exports = {
       },
     ],
   },
+  resolve: {
+    fallback: {
+      fs: false, // or 'empty' if needed
+      // add other modules here if needed
+    },
+  },
+
   devtool: "source-map",
   plugins: [new NodemonPlugin()],
 };
