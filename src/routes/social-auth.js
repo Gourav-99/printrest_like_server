@@ -30,7 +30,7 @@ router.get(
     res.cookie("access_token", token, {
       httpOnly: false, //when set to true it cann't be accessed from browser or client side
     });
-    res.redirect("http://localhost:3000/");
+    res.redirect("https://master.dwrud2cqgk3ja.amplifyapp.com/");
 
     // Successful authentication, redirect home.
   }
