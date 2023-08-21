@@ -2,7 +2,9 @@ const path = require("path");
 const NodemonPlugin = require("nodemon-webpack-plugin");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: {
+    app: ["node-polyfill", "./src/index.js"], // Add "node-polyfill" as an entry
+  },
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
