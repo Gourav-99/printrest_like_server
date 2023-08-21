@@ -86,7 +86,7 @@ app.get("/", (req, res) => {
 //       res.status(500).send("Error creating posts");
 //     });
 // });
-console.log(path.dirname);
+
 app.listen(PORT, () => {
   logger.info(`SERVER IS RUNNIG AT ${PORT}`);
 });
