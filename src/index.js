@@ -18,10 +18,11 @@ const app = express();
 const PORT = process.env.SERVER_PORT || 8080;
 connectDB();
 const corsOptions = {
-  origin: "https://master.dwrud2cqgk3ja.amplifyapp.com",
+  // origin: "https://master.dwrud2cqgk3ja.amplifyapp.com",
+  origin: true,
   credentials: true,
 };
-app.use(cors(corsOptions));
+app.use("*", cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 app.use(
