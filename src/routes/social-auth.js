@@ -31,7 +31,7 @@ router.get(
     console.log("user", userData);
     res.cookie("access_token", token, {
       httpOnly: false, //when set to true it cann't be accessed from browser or client side
-      domain: ".dwrud2cqgk3ja.amplifyapp.com",
+      domain: ".amplifyapp.com",
       sameSite: "lax",
     });
     res.redirect("https://master.dwrud2cqgk3ja.amplifyapp.com/");
