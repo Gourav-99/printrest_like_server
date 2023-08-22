@@ -8,13 +8,15 @@ passport.serializeUser((user, done) => {
   return done(null, user);
 });
 
-passport.deserializeUser((id, done) => {
-  User.findById(id, (err, doc) => {
-    // Whatever we return goes to the client and binds to the req.user property
-    return done(null, doc);
-  });
-  // return done(null, id);
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id).exec();
+    return done(null, user);
+  } catch (error) {
+    return done(error, null);
+  }
 });
+
 // Google Strategy
 passport.use(
   new GoogleStrategy(
