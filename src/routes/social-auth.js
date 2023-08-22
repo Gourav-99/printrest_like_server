@@ -30,7 +30,7 @@ router.get(
     console.log("token", token);
     console.log("user", userData);
     res.cookie("access_token", token, {
-      httpOnly: false, //when set to true it cann't be accessed from browser or client side
+      httpOnly: true, //when set to true it cann't be accessed from browser or client side
     });
     res.redirect("https://master.dwrud2cqgk3ja.amplifyapp.com/");
 
