@@ -25,7 +25,8 @@ passport.use(
       clientSecret:
         process.env.GOOGLE_CLIENT_SECRET ||
         "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",
-      callbackURL: "/oauth/google/callback",
+      callbackURL:
+        "https://3z5n8hb7u8.execute-api.ap-south-1.amazonaws.com/oauth/google/callback",
     },
     async function (accessToken, refreshToken, profile, cb) {
       try {
