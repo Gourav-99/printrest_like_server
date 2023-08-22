@@ -29,14 +29,14 @@ router.get(
     const token = await generateToken(userData);
     console.log("token", token);
     console.log("user", userData);
-    res.redirect("https://master.dwrud2cqgk3ja.amplifyapp.com/");
     res.cookie("access_token", token, {
       httpOnly: false, // Set this to true for security (default)
-      // domain: ".amplifyapp.com",
+      domain: ".amplifyapp.com",
       // maxAge: 24 * 60 * 60 * 1000, // Optional: Set cookie expiration time
-      // secure: true, // Optional: Use for secure connections (HTTPS)
+      secure: true, // Optional: Use for secure connections (HTTPS)
       // sameSite: "strict", // Optional: Apply same-site policy
     });
+    res.redirect("https://master.dwrud2cqgk3ja.amplifyapp.com/");
 
     // Successful authentication, redirect home.
   }
