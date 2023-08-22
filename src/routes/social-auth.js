@@ -27,6 +27,8 @@ router.get(
       role: user.role,
     };
     const token = await generateToken(userData);
+    console.log("token", token);
+    console.log("user", userData);
     res.cookie("access_token", token, {
       httpOnly: false, //when set to true it cann't be accessed from browser or client side
     });

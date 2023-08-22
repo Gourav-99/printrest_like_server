@@ -33,6 +33,7 @@ passport.use(
         let user = await User.findOne({ email: profile.emails[0].value });
         if (user) {
           // Update the user's information if they exist
+          console.log("already exists");
           user.googleId = profile.id;
           user.isOauthUser = true;
 
@@ -40,6 +41,7 @@ passport.use(
           await user.save();
         } else {
           // Create a new user if they don't exist
+          console.log("new creating");
           user = await User.create({
             googleId: profile.id,
             isOauthUser: true,
