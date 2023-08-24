@@ -95,6 +95,7 @@ export const login = async (req, res) => {
         httpOnly: false, //when set to true it cann't be accessed from browser or client side
         secure: true,
         sameSite: "none",
+        domain: "dwrud2cqgk3ja.amplifyapp.com",
       })
       .status(201)
       .json({
