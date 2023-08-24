@@ -10,18 +10,26 @@ import {
 
 export const validateAuth = async (req, res) => {
   try {
-    const { token } = req.params;
-    const decoded = await verifyAuthToken(token);
-    if (!decoded) {
-      return res.status(401).json({
-        message: "!invalid token",
-        success: false,
+    if (req.session.isAuthenticated) {
+      const decoded = await verifyAuthToken(req.session.token);
+
+      // const { token } = req.params;
+      // const decoded = await verifyAuthToken(token);
+      if (!decoded) {
+        return res.status(401).json({
+          message: "!invalid token",
+          success: false,
+        });
+      }
+      return res.status(201).json({
+        message: "token validated succesfully",
+        success: true,
+        data: decoded,
       });
     }
-    return res.status(201).json({
-      message: "token validated succesfully",
-      success: true,
-      data: decoded,
+    return res.status(401).json({
+      message: "!session expired",
+      success: false,
     });
   } catch (error) {
     logger.error(error);
@@ -90,12 +98,14 @@ export const login = async (req, res) => {
       role: user.role,
     };
     const token = await generateToken(userData);
+    req.session.userId = "user123";
+    req.session.isAuthenticated = true;
+    req.session.token = token;
     return res
       .cookie("access_token", token, {
         httpOnly: false, //when set to true it cann't be accessed from browser or client side
         secure: true,
         sameSite: "none",
-        domain: "dwrud2cqgk3ja.amplifyapp.com",
       })
       .status(201)
       .json({
@@ -173,6 +183,7 @@ export const changePassword = async (req, res) => {
 };
 
 export const logout = (req, res) => {
+  req.session.destroy();
   return res.clearCookie("access_token", { path: "/" }).status(201).json({
     message: "logged out successfully",
     success: true,

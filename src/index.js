@@ -30,6 +30,7 @@ app.use(
     secret: "access_token", // Replace with a secure random key for session encryption
     resave: false,
     saveUninitialized: false,
+    cookie: { secure: true },
   })
 );
 app.use(morganMiddleware);
