@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import cors from "cors";
 import { connectDB } from "./utils/db.utils";
+import { createProxyMiddleware } from "http-proxy-middleware";
 import logger, { morganMiddleware } from "./logger";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth";
@@ -17,6 +18,11 @@ import oauthRoutes from "./routes/social-auth";
 const app = express();
 const PORT = process.env.SERVER_PORT || 8080;
 connectDB();
+const apiProxy = createProxyMiddleware("/api", {
+  target: "https://3z5n8hb7u8.execute-api.ap-south-1.amazonaws.com",
+  changeOrigin: true,
+});
+
 const corsOptions = {
   // origin: "https://master.dwrud2cqgk3ja.amplifyapp.com",
   origin: true,
@@ -30,9 +36,9 @@ app.use(
     secret: "access_token", // Replace with a secure random key for session encryption
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: true },
   })
 );
+app.use("/api", apiProxy);
 app.use(morganMiddleware);
 app.use(passport.initialize());
 app.use(passport.session());
