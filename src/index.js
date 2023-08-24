@@ -19,7 +19,7 @@ const PORT = process.env.SERVER_PORT || 8080;
 connectDB();
 const corsOptions = {
   // origin: "https://master.dwrud2cqgk3ja.amplifyapp.com",
-  origin: "*",
+  origin: true,
   credentials: true,
 };
 app.use(cors(corsOptions));
