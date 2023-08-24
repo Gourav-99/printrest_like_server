@@ -93,6 +93,8 @@ export const login = async (req, res) => {
     return res
       .cookie("access_token", token, {
         httpOnly: false, //when set to true it cann't be accessed from browser or client side
+        secure: true,
+        sameSite: "none",
       })
       .status(201)
       .json({
