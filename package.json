@@ -32,10 +32,11 @@
   },
   "devDependencies": {
     "@babel/core": "7.16.0",
+    "@babel/plugin-transform-class-properties": "^7.22.5",
     "@babel/preset-env": "7.16.4",
     "babel-loader": "8.2.3",
     "nodemon": "^3.0.1",
-    "nodemon-webpack-plugin": "^4.8.2",
+    "nodemon-webpack-plugin": "^4.8.1",
     "rimraf": "3.0.2",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
