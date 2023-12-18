@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "node_modules/.bin/webpack --config webpack.config.js --mode=production",
-    "dev": "node_modules/.bin/webpack --config webpack.config.js --mode=development -w "
+    "dev": "node_modules/.bin/webpack --config webpack.config.js --mode=development -w ",
+    "start": "node dist/bundle.js"
   },
   "author": "gourav",
   "license": "ISC",
