@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo:latest
+    container_name: printrest-db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    
+  backend:
+    container_name: printrest-server
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+    environment:
+      - DB_URI=mongodb://root:root@mongo:27017/pinCraft?authSource=admin
+      - PORT=8080
+volumes:
+  mongo_data:
